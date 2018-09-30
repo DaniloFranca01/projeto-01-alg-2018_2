@@ -1,4 +1,3 @@
-from operator import attrgetter
 class _No:
 
     def __init__(self, item=None, ant=None, prox=None):
@@ -7,7 +6,7 @@ class _No:
         self.ant = ant
     
    
-class Lista:
+class Lista(object):
     
     class Iterador: 
         def __init__(self):
