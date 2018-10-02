@@ -25,7 +25,7 @@ class Lista(object):
         self.tamanho = 0
         if self.objUniv != None:
             self.estender(objUniv)
-        del(objUniv)
+        del(self.objUniv)
         
         
     def __str__(self):
@@ -157,4 +157,15 @@ class Lista(object):
         del aux
         self.tamanho -=1 
         return item
+    
+    def limpar(self):
+        while self.__primeiro is not None:
+            aux = self.__primeiro
+            self.__primeiro = self.__primeiro.prox 
+            aux.ant = aux.prox = None
+            aux.item = None
+            del(aux)
+        self.__primeiro = self.__ultimo
+        self.tamanho = 0
+
     
