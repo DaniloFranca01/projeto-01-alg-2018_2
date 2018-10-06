@@ -1,16 +1,25 @@
 '''
-Created on 28 de set de 2018
+Univesidade Federal de Pernambuco -- UFPE (http://www.ufpe.br)
+Centro de Informatica -- CIn (http://www.cin.ufpe.br)
+Bacharelado em Sistemas de Informacao
+IF969 -- Algoritmos e Estruturas de Dados
 
-@author: danilo
+Autor:    Danilo Leite de Franca
+Email:    dlf3@cin.ufpe.br
+Data:        2018-09-28
+
+Descricao:  Classe NGrama herdada de uma Lista duplamente Encadeada.
+
+
+Licenca: The MIT License (MIT)
+            Copyright(c) 2018 Danilo Leite de Franca
 '''
-from ListaDupla import Lista
-class NGrama(Lista):
+
+from ListaDupla import ListaDupla
+class NGrama(ListaDupla):
     '''
     classdocs
     '''
-    def __init__(self):
-        super().__init__()
-        
-    def __repr__(self):
-        return "NGrama("+self.__str__()+")" 
-    
+    def __init__(self, *palavras):
+        super().__init__(palavras)
+
