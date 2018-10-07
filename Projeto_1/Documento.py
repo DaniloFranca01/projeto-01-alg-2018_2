@@ -40,7 +40,8 @@ class Documento():
             palavras = ""
             for j in range(i,i+n):
                 palavras+= self.vPalavras[j]+","
-            nGram = ng.NGrama(palavras)
+            palavras.strip(",")
+            nGram = ng.NGrama(palavras.split(","))
             self.lNGrams.anexar(nGram)
             del(nGram)
         del(aux)
@@ -61,11 +62,11 @@ class Documento():
                     palavra = ""
         arq.close()
         self.vPalavras = np.array(lista)
-        self.gerarNGramas(4)
+        self.gerarNGramas(3)
 
 
-caminho =  'C:\\Users\\NTI\Downloads\dados\dados\src\source-document00010.txt'
+caminho =  'C:\\Users\danilo.DESKTOP-8QL5HFM\Downloads\Projeto 1 ALG\dados\src\source-document00010.txt'
 a = Documento(caminho)
 a.carregarDoc()
-print(str(a.lNGrams))
-print(str(a.vPalavras))
+saidx = str(a.lNGrams)
+print(saidx)

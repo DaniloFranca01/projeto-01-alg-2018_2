@@ -20,6 +20,6 @@ class NGrama(ListaDupla):
     '''
     classdocs
     '''
-    def __init__(self, *palavras):
+    def __init__(self, palavras):
         super().__init__(palavras)
 
