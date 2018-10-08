@@ -20,53 +20,43 @@ import ListaDupla as lde
 import NGrama as ng
 class Documento():
 
-    def __init__(self,diretorio):
-        self.diretorio=diretorio
-        self.nPalavras = 0
-        self.vPalavras = None
-        self.lNGrams = lde.ListaDupla()
+    def __init__(self,listaPalavras,nPalavras):
+        self.nPalavras = nPalavras
+        self.__vPalavras = listaPalavras
+        self.__lNGrams =  self.gerarNGramas(3,lde.ListaDupla())
+
+    @property
+    def vPalavras(self):
+        return self.__vPalavras
+
+    @vPalavras.setter
+    def vPalavras(self, lista):
+        self.__vPalavras = np.array(lista)
+
+    @property
+    def lNGrams(self):
+        return self.__lNGrams
+
+    @lNGrams.setter
+    def lNGrams(self, lista):
+        self.__lNGrams = lista
+
 
     def __str__(self):
-        return str(self.vPalavras)
+        return str(self.__vPalavras)
 
     def __repr__(self):
         return self.__str__()
 
-    def gerarNGramas(self,n):
-        self.vPalavras
+    def gerarNGramas(self,n,lista):
         for i in range(0,self.nPalavras):
             if (i+n) > self.nPalavras:
-                return
+                return lista
             palavras = ""
             for j in range(i,i+n):
-                palavras+= self.vPalavras[j]+","
+                palavras+= self.__vPalavras[j]+","
             palavras.strip(",")
             nGram = ng.NGrama(palavras.split(","))
-            self.lNGrams.anexar(nGram)
+            lista.anexar(nGram)
             del(nGram)
-        del(aux)
-
-    def carregarDoc(self):
-        lista = []
-        arq = open(self.diretorio,'r')
-        texto = arq.readlines()
-        for linha in texto:
-            palavra = ""
-            for i in linha:
-                cod = ord(i)
-                if (cod >= 48 and cod<=57) or(cod >= 65 and cod<=90) or (cod >= 97 and cod<=122):
-                    palavra += i
-                elif i.strip() == "" and palavra !="":
-                    lista.append(palavra)
-                    self.nPalavras +=1
-                    palavra = ""
-        arq.close()
-        self.vPalavras = np.array(lista)
-        self.gerarNGramas(3)
-
-
-caminho =  'C:\\Users\danilo.DESKTOP-8QL5HFM\Downloads\Projeto 1 ALG\dados\src\source-document00010.txt'
-a = Documento(caminho)
-a.carregarDoc()
-saidx = str(a.lNGrams)
-print(saidx)
+        return lista

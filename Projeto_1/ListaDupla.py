@@ -105,7 +105,7 @@ class ListaDupla(object):
         return self
 
     def copiar(self):
-        saida = Lista()
+        saida = ListaDupla()
         aux = self.__primeiro.prox
         while aux.prox != None:
             saida.anexar(aux.item)
