@@ -35,7 +35,10 @@ class Corpus(object):
             for i in linha:
                 cod = ord(i)
                 if (cod >= 48 and cod<=57) or(cod >= 65 and cod<=90) or (cod >= 97 and cod<=122):
-                    palavra += i
+                    if (cod >= 65 and cod<=90):
+                        palavra += chr(cod+32)
+                    else:
+                        palavra += i
                 elif i.strip() == "" and palavra !="":
                     lista.append(palavra)
                     nPalavras +=1
@@ -44,7 +47,7 @@ class Corpus(object):
         return documento
 
 
-caminho =  'C:\\Users\\danilo.DESKTOP-8QL5HFM\\Downloads\\Projeto 1 ALG\\dados\\src\\'
+caminho =  'C:\\Users\\NTI\\Downloads\\Projeto 1 ALG\\dados\\src\\'
 a = Corpus(caminho)
 a.carregarDiretorio()
 
