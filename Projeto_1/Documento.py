@@ -63,8 +63,9 @@ class Documento():
             palavras = ""
             for j in range(i,i+n):
                 palavras+= self.__vPalavras[j]+","
-            palavras.strip(",")
-            nGram = ng.NGrama(palavras.split(","))
+            palavras = palavras.strip(",")
+            palavras = palavras.split(",")
+            nGram = ng.NGrama(palavras)
             lista.anexar(nGram)
             self.nNGrams+=1
             del(nGram)

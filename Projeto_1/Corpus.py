@@ -47,10 +47,10 @@ class Corpus(object):
         return documento
 
 
-caminho =  'D:\\Users\\dlf3\\Downloads\\dados\\src\\'
+caminho =  "C:\\Users\\NTI\\Downloads\\dados\\src\\"
 a = Corpus(caminho)
 b = a.carregarDoc(caminho+"source-document00010.txt")
-c = a.carregarDoc("D:\\Users\\dlf3\\Downloads\\dados\\susp\\suspicious-document00005.txt")
+c = a.carregarDoc("C:\\Users\\NTI\\Downloads\\dados\\susp\\suspicious-document00005.txt")
 b.contencao(c)
 
 

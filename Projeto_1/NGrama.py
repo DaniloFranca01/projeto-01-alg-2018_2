@@ -22,4 +22,15 @@ class NGrama(ListaDupla):
     '''
     def __init__(self, palavras):
         super().__init__(palavras)
-
+        
+    def __eq__(self, ngrama):
+        cont = 0 
+        qtdTrue = 0
+        for x in ngrama:
+            if x == self[cont]:
+                qtdTrue+= 1
+            cont+= 1
+        if self.tamanho == qtdTrue:
+            return True
+        else:
+            return False
