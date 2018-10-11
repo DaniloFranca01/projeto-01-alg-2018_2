@@ -21,33 +21,41 @@ import NGrama as ng
 class Documento():
 
     def __init__(self,listaPalavras,nPalavras):
-        self.nPalavras = nPalavras
+        self.__nPalavras = nPalavras
         self.__vPalavras = listaPalavras
-        self.__lNGrams =  self.gerarNGramas(3,lde.ListaDupla())
+        self.nNGrams = 0
+        self.lNGrams =  self.gerarNGramas(3,lde.ListaDupla())
 
     @property
     def vPalavras(self):
         return self.__vPalavras
 
     @vPalavras.setter
-    def vPalavras(self, lista):
-        self.__vPalavras = np.array(lista)
-
+    def vPalavras(self, listaPalavras):
+        self.__vPalavras = np.array(listaPalavras)
+        
     @property
-    def lNGrams(self):
-        return self.__lNGrams
+    def nPalavras(self):
+        return self.__nPalavras
 
-    @lNGrams.setter
-    def lNGrams(self, lista):
-        self.__lNGrams = lista
-
+    @nPalavras.setter
+    def nPalavras(self, nPalavras):
+        self.__nPalavras = nPalavras
 
     def __str__(self):
         return str(self.__vPalavras)
 
     def __repr__(self):
         return self.__str__()
-
+    
+    def contencao(self,documento):
+        intersec = 0
+        for x in documento.lNGrams:
+            for y in self.lNGrams:
+                if x == y: 
+                    intersec += 1
+        c = intersec/documento.nNgrams
+        
     def gerarNGramas(self,n,lista):
         for i in range(0,self.nPalavras):
             if (i+n) > self.nPalavras:
@@ -58,5 +66,6 @@ class Documento():
             palavras.strip(",")
             nGram = ng.NGrama(palavras.split(","))
             lista.anexar(nGram)
+            self.nNGrams+=1
             del(nGram)
         return lista

@@ -47,7 +47,10 @@ class Corpus(object):
         return documento
 
 
-caminho =  'C:\\Users\\NTI\\Downloads\\Projeto 1 ALG\\dados\\src\\'
+caminho =  'D:\\Users\\dlf3\\Downloads\\dados\\src\\'
 a = Corpus(caminho)
-a.carregarDiretorio()
+b = a.carregarDoc(caminho+"source-document00010.txt")
+c = a.carregarDoc("D:\\Users\\dlf3\\Downloads\\dados\\susp\\suspicious-document00005.txt")
+b.contencao(c)
+
 

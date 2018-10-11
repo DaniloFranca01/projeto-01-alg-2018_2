@@ -26,8 +26,8 @@ class _No:
 class ListaDupla(object):
 
     class Iterador:
-        def __init__(self):
-            self.__atual = self.__primeiro.prox
+        def __init__(self, primeiro):
+            self.atual = primeiro
 
         def __next__(self):
             if self.atual == None:
