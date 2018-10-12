@@ -33,7 +33,7 @@ class Documento():
     @vPalavras.setter
     def vPalavras(self, listaPalavras):
         self.__vPalavras = np.array(listaPalavras)
-        
+
     @property
     def nPalavras(self):
         return self.__nPalavras
@@ -47,15 +47,16 @@ class Documento():
 
     def __repr__(self):
         return self.__str__()
-    
+
     def contencao(self,documento):
         intersec = 0
         for x in documento.lNGrams:
             for y in self.lNGrams:
-                if x == y: 
+                if x == y:
                     intersec += 1
-        c = intersec/documento.nNgrams
-        
+        c = intersec/documento.nNGrams
+        return c
+
     def gerarNGramas(self,n,lista):
         for i in range(0,self.nPalavras):
             if (i+n) > self.nPalavras:

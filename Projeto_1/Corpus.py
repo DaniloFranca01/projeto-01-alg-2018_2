@@ -30,7 +30,7 @@ class Corpus(object):
     def carregarDoc(self,arqv):
         lista = []
         nPalavras = 0
-        for linha in open(arqv,'r'):
+        for linha in open(arqv,'r',encoding="utf8"):
             palavra = ""
             for i in linha:
                 cod = ord(i)
@@ -46,11 +46,12 @@ class Corpus(object):
         documento = myDoc.Documento(lista,nPalavras)
         return documento
 
-
-caminho =  "C:\\Users\\NTI\\Downloads\\dados\\src\\"
-a = Corpus(caminho)
-b = a.carregarDoc(caminho+"source-document00010.txt")
-c = a.carregarDoc("C:\\Users\\NTI\\Downloads\\dados\\susp\\suspicious-document00005.txt")
-b.contencao(c)
+    def verificaPlagio(self,documento,limiar):
+        lDocBases = lde.ListaDupla()
+        for x in self.lDocumentos:
+            contencao = x.contencao(documento)
+            if contencao > limiar:
+                lDocBases.inserirOrdenado(x)
+        return lDocBases
 
 
