@@ -21,10 +21,19 @@ class NGrama(ListaDupla):
     classdocs
     '''
     def __init__(self, palavras):
-        super().__init__(palavras)
-        
+        self.__palavras = palavras
+        super().__init__(self.__palavras)
+
+    @property
+    def palavras(self):
+        return self.__palavras
+
+    @palavras.setter
+    def palavras(self, palavras):
+        self.__palavras = palavras
+
     def __eq__(self, ngrama):
-        cont = 0 
+        cont = 0
         qtdTrue = 0
         for x in ngrama:
             if x == self[cont]:

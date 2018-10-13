@@ -20,11 +20,19 @@ import ListaDupla as lde
 import Documento as myDoc
 class Corpus(object):
     def __init__(self, diretorio):
-        self.diretorio=diretorio
+        self.__diretorio=diretorio
         self.lDocumentos = lde.ListaDupla()
 
+    @property
+    def diretorio(self):
+        return self.__diretorio
+
+    @diretorio.setter
+    def diretorio(self, diretorio):
+        self.__diretorio = diretorio
+
     def carregarDiretorio(self):
-        for arquivo in glob.glob(self.diretorio+'/*txt'):
+        for arquivo in glob.glob(self.__diretorio+'/*txt'):
             self.lDocumentos.anexar(self.carregarDoc(arquivo))
 
     def carregarDoc(self,arqv):
@@ -39,7 +47,7 @@ class Corpus(object):
                         palavra += chr(cod+32)
                     else:
                         palavra += i
-                elif i.strip() == "" and palavra !="":
+                elif i.strip() == "" and palavra.strip() !="":
                     lista.append(palavra)
                     nPalavras +=1
                     palavra = ""

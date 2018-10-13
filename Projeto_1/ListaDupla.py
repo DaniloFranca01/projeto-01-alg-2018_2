@@ -37,13 +37,21 @@ class ListaDupla(object):
             return item
 
     def __init__(self,objUniv = None):
-        self.objUniv = objUniv
+        self.__objUniv = objUniv
         self.__primeiro = self.__ultimo = _No()
         self.tamanho = 0
-        if self.objUniv != None:
+        if self.__objUniv != None:
             self.estender(objUniv)
-        del(self.objUniv)
+        del(self.__objUniv)
 
+    @property
+    def objUniv(self):
+        return self.__objUniv
+
+    @objUniv.setter
+    def objUniv(self, objUniv):
+
+        self.__objUniv = objUniv
 
     def __str__(self):
         aux = self.__primeiro.prox
