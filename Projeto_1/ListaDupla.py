@@ -24,7 +24,9 @@ class _No:
 
 
 class ListaDupla(object):
-
+    '''
+    Lista Duplamente Encadeada
+    '''
     class Iterador:
         def __init__(self, primeiro):
             self.atual = primeiro
@@ -104,15 +106,24 @@ class ListaDupla(object):
                 ref.item = valor
 
     def vazia(self):
+        '''
+        Verifica se a lista esta vazia
+        '''
         return self.__primeiro == self.__ultimo
 
     def estender(self,iteravel):
+        '''
+        Recebe um objeto iteravel como parametro e retorna a lista estendida com o objeto informado
+        '''
         for x in iteravel:
             self.anexar(x)
 
         return self
 
     def copiar(self):
+        '''
+        Retorna a copia exata da lista
+        '''
         saida = ListaDupla()
         aux = self.__primeiro.prox
         while aux.prox != None:
@@ -122,6 +133,9 @@ class ListaDupla(object):
         return saida
 
     def pesquisar(self, item):
+        '''
+        Recebe como parametro um item e retorna se for encontrado
+        '''
         aux = self.__primeiro.prox
         while not aux is None and aux.item != item:
             aux = aux.prox
@@ -130,11 +144,17 @@ class ListaDupla(object):
         return aux.item
 
     def anexar(self, item):
+        '''
+        Recebe como parametro um item e adiciona no final da lista
+        '''
         self.__ultimo.prox = _No(item, self.__ultimo,None)
         self.__ultimo = self.__ultimo.prox
         self.tamanho +=1
 
     def inserirInicio(self, item):
+        '''
+        Recebe como parametro um item e adiciona no inicio da lista
+        '''
         aux = _No(item, self.__primeiro, self.__primeiro.prox)
         self.__primeiro.prox = aux
         if self.vazia():
@@ -144,6 +164,9 @@ class ListaDupla(object):
         self.tamanho +=1
 
     def inserirOrdenado(self, item):
+        '''
+        Recebe como parametro um item e adiciona de forma ordenada na lista
+        '''
         if self.vazia():
             self.anexar(item)
             return
@@ -160,6 +183,9 @@ class ListaDupla(object):
 
 
     def removerInicio(self):
+        '''
+        Remove a primeira posicao da lista
+        '''
         if(self.vazia()): return None
         aux = self.__primeiro.prox
         self.__primeiro.prox = aux.prox
@@ -174,6 +200,9 @@ class ListaDupla(object):
         return item
 
     def removerFim(self):
+        '''
+        Remove a ultima posicao da lista
+        '''
         if(self.vazia()): return None
         aux = self.__ultimo
         self.__ultimo = aux.ant
@@ -183,14 +212,3 @@ class ListaDupla(object):
         del aux
         self.tamanho -=1
         return item
-
-    def limpar(self):
-        while self.__primeiro is not None:
-            aux = self.__primeiro
-            self.__primeiro = self.__primeiro.prox
-            aux.ant = aux.prox = None
-            aux.item = None
-            del(aux)
-        self.__primeiro = self.__ultimo
-        self.tamanho = 0
-

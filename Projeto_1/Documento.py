@@ -19,7 +19,9 @@ import numpy as np
 import ListaDupla as lde
 import NGrama as ng
 class Documento():
-
+    '''
+    Representacao de um documento de texto
+    '''
     def __init__(self,listaPalavras,nPalavras):
         self.__nPalavras = nPalavras
         self.__vPalavras = listaPalavras
@@ -49,6 +51,9 @@ class Documento():
         return self.__str__()
 
     def contencao(self,documento):
+        '''
+        Recebe como parametro um documento e retorna a contencao do documento informado para cada documento em um diretorio
+        '''
         intersec = 0
         for x in documento.lNGrams:
             for y in self.lNGrams:
@@ -58,6 +63,9 @@ class Documento():
         return c
 
     def gerarNGramas(self,n,lista):
+        '''
+        Recebe como parametro uma lista e um valor N e retorna um N-grama com o tamanho informado
+        '''
         for i in range(0,self.nPalavras):
             if (i+n) > self.nPalavras:
                 return lista

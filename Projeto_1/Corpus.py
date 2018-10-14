@@ -19,6 +19,9 @@ import glob
 import ListaDupla as lde
 import Documento as myDoc
 class Corpus(object):
+    '''
+    Representacao de um conjunto de documentos
+    '''
     def __init__(self, diretorio):
         self.__diretorio=diretorio
         self.lDocumentos = lde.ListaDupla()
@@ -32,10 +35,16 @@ class Corpus(object):
         self.__diretorio = diretorio
 
     def carregarDiretorio(self):
+        '''
+        Carrega todos os arquivos no deretorio Informado
+        '''
         for arquivo in glob.glob(self.__diretorio+'/*txt'):
             self.lDocumentos.anexar(self.carregarDoc(arquivo))
 
     def carregarDoc(self,arqv):
+        '''
+        Carrega um documento no deretorio Informado
+        '''
         lista = []
         nPalavras = 0
         for linha in open(arqv,'r',encoding="utf8"):
@@ -55,6 +64,11 @@ class Corpus(object):
         return documento
 
     def verificaPlagio(self,documento,limiar):
+        '''
+        Recebe como parametro um documento e um limiar
+        retorna uma lista de documentos prováveis
+        que serviram de base para o documento informado
+        '''
         lDocBases = lde.ListaDupla()
         for x in self.lDocumentos:
             contencao = x.contencao(documento)

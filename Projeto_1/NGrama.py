@@ -18,7 +18,7 @@ Licenca: The MIT License (MIT)
 from ListaDupla import ListaDupla
 class NGrama(ListaDupla):
     '''
-    classdocs
+    Representacao de um N-Grama com tamanho variavel
     '''
     def __init__(self, palavras):
         self.__palavras = palavras
