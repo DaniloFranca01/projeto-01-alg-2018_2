@@ -1,17 +1,16 @@
 import Corpus as c
-import glob
 import Documento as myDoc
 class Teste(object):
     def __init__(self, diretorio):
-        self.diretorio=diretorio
+        self.__diretorio=diretorio
 
-    def carregarDiretorio(self):
-        caminho =  "C:\\Users\\danilo.DESKTOP-8QL5HFM\\Downloads\\Projeto 1 ALG\\dados\\src\\"
-        corp = c.Corpus(caminho)
-        corp.carregarDiretorio()
-        for arquivo in glob.glob(self.diretorio + '/*txt'):
-            doc = (self.carregarDoc(arquivo))
-            corp.verificaPlagio(doc, 0.2)
+    @property
+    def diretorio(self):
+        return self.__diretorio
+
+    @diretorio.setter
+    def diretorio(self,diretorio):
+        self.__diretorio = diretorio
 
     def carregarDoc(self, arqv):
         lista = []
@@ -32,12 +31,33 @@ class Teste(object):
         documento = myDoc.Documento(lista, nPalavras)
         return documento
 
-csusp = "C:\\Users\\danilo.DESKTOP-8QL5HFM\\Downloads\\Projeto 1 ALG\\dados\\susp\\"
-caminho =  "C:\\Users\\danilo.DESKTOP-8QL5HFM\\Downloads\\Projeto 1 ALG\\dados\\src\\"
-corp = c.Corpus(caminho)
-corp.carregarDiretorio()
-teste = Teste(csusp)
-doc = teste.carregarDoc(csusp+"suspicious-document00005.txt")
-docsBasePlagio=corp.verificaPlagio(doc, 0.2)
-#teste.carregarDiretorio()
-print(len(docsBasePlagio))
+
+    def teste11(self, nomeFonte,diretorioSusp):
+        '''
+         Testa um documento suspeito para um fonte cujo nome informado se encontra no diretorio da classe
+        '''
+        corp = c.Corpus(self.diretorio)
+        docFonte = corp.carregarDoc(self.diretorio+nomeFonte)
+        corp.lDocumentos.anexar(docFonte)
+        doc = self.carregarDoc(diretorioSusp)
+        docsBasePlagio=corp.verificaPlagio(doc, 0.01)
+        return len(docsBasePlagio)
+
+    def teste1N(self,diretorioSusp):
+        '''
+        Testa um documento suspeito para todos os fontes do diretorio da classe
+        '''
+        corp = c.Corpus(self.diretorio)
+        corp.carregarDiretorio()
+        doc = self.carregarDoc(diretorioSusp)
+        docsBasePlagio=corp.verificaPlagio(doc, 0.01)
+        return len(docsBasePlagio)
+
+
+caminhoSrc =  "C:\\Users\\danilo.DESKTOP-8QL5HFM\\Downloads\\Projeto 1 ALG\\dados\\src\\"
+nomeFonte = "source-document03229.txt"
+dirSusp= "C:\\Users\\danilo.DESKTOP-8QL5HFM\\Downloads\\Projeto 1 ALG\\dados\\src\\source-document03229.txt"
+
+teste = Teste(caminhoSrc)
+print(teste.teste11(nomeFonte, dirSusp))
+print(teste.teste1N(dirSusp))

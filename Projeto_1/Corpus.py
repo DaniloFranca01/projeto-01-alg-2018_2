@@ -49,14 +49,17 @@ class Corpus(object):
         nPalavras = 0
         for linha in open(arqv,'r',encoding="utf8"):
             palavra = ""
+            linhaLen = len(linha)
+            contChar = 0
             for i in linha:
+                contChar+=1
                 cod = ord(i)
                 if (cod >= 48 and cod<=57) or(cod >= 65 and cod<=90) or (cod >= 97 and cod<=122):
                     if (cod >= 65 and cod<=90):
                         palavra += chr(cod+32)
                     else:
                         palavra += i
-                elif i.strip() == "" and palavra.strip() !="":
+                elif ((i.strip() == "") or(linhaLen == contChar)) and palavra !="":
                     lista.append(palavra)
                     nPalavras +=1
                     palavra = ""
