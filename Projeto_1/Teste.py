@@ -1,5 +1,6 @@
 import Corpus as c
 import Documento as myDoc
+from Profile import profile, memProfile
 class Teste(object):
     def __init__(self, diretorio):
         self.__diretorio=diretorio
@@ -31,7 +32,8 @@ class Teste(object):
         documento = myDoc.Documento(lista, nPalavras)
         return documento
 
-
+    @profile
+    @memProfile
     def teste11(self, nomeFonte,diretorioSusp):
         '''
          Testa um documento suspeito para um fonte cujo nome informado se encontra no diretorio da classe
@@ -60,4 +62,4 @@ dirSusp= "C:\\Users\\danilo.DESKTOP-8QL5HFM\\Downloads\\Projeto 1 ALG\\dados\\sr
 
 teste = Teste(caminhoSrc)
 print(teste.teste11(nomeFonte, dirSusp))
-print(teste.teste1N(dirSusp))
+#print(teste.teste1N(dirSusp))
