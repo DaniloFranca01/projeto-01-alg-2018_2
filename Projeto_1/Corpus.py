@@ -34,12 +34,14 @@ class Corpus(object):
     def diretorio(self, diretorio):
         self.__diretorio = diretorio
 
+
     def carregarDiretorio(self):
         '''
         Carrega todos os arquivos no deretorio Informado
         '''
         for arquivo in glob.glob(self.__diretorio+'/*txt'):
             self.lDocumentos.anexar(self.carregarDoc(arquivo))
+
 
     def carregarDoc(self,arqv):
         '''

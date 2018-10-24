@@ -14,7 +14,7 @@ Descricao:  Classe Documento.
 Licenca: The MIT License (MIT)
             Copyright(c) 2018 Danilo Leite de Franca
 '''
-
+from memory_profiler import profile
 import numpy as np
 import ListaDupla as lde
 import NGrama as ng
@@ -62,6 +62,7 @@ class Documento():
         c = intersec/documento.nNGrams
         return c
 
+    @profile
     def gerarNGramas(self,n,lista):
         '''
         Recebe como parametro uma lista e um valor N e retorna um N-grama com o tamanho informado
