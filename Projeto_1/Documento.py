@@ -61,37 +61,37 @@ class Documento():
         return self.__str__()
 
     def __lt__(self, other):
-        if self.nomeDocumento < other.nomeDocumento:
+        if self.__nomeDocumento < other.__nomeDocumento:
             return True
         else:
             return False
 
     def __le__(self, other):
-        if self.nomeDocumento <= other.nomeDocumento:
+        if self.__nomeDocumento <= other.__nomeDocumento:
             return True
         else:
             return False
 
     def __eq__(self, other):
-        if self.nomeDocumento == other.nomeDocumento:
+        if self.__nomeDocumento == other.__nomeDocumento:
             return True
         else:
             return False
 
     def __ne__(self, other):
-        if self.nomeDocumento != other.nomeDocumento:
+        if self.__nomeDocumento != other.__nomeDocumento:
             return True
         else:
             return False
 
     def __gt__(self, other):
-        if self.nomeDocumento > other.nomeDocumento:
+        if self.__nomeDocumento > other.__nomeDocumento:
             return True
         else:
             return False
 
     def __ge__(self, other):
-        if self.nomeDocumento >= other.nomeDocumento:
+        if self.__nomeDocumento >= other.__nomeDocumento:
             return True
         else:
             return False

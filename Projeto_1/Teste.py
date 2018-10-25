@@ -22,7 +22,7 @@ class Teste(object):
         '''
         for (dirpath, dirnames,filenames) in walk(direct):
             if nomeArquivo in filenames:
-                return self.carregarDoc(dirpath+nomeArquivo)
+                return self.carregarDoc(dirpath+nomeArquivo,nomeArquivo)
 
     def carregarDoc(self, arqv, nomeArqv):
         lista = []
@@ -75,7 +75,7 @@ class Teste(object):
         saida.write("Total de documentos que posivelmente serviram de base: "+str(len(listaDocs))+'\n')
         saida.write("NOME:CONTENÇÃO"+'\n')
         for docmt in listaDocs:
-            saida.write(docmt.__nomeDocumento+": "+docmt.contenVal+'\n')
+            saida.write(docmt.nomeDocumento+": "+str(docmt.contenVal)+'\n')
         saida.close()
 
 caminhoSrc =  "C:\\Users\\danilo.DESKTOP-8QL5HFM\\Downloads\\Projeto 1 ALG\\dados\\src\\"
@@ -86,5 +86,5 @@ nomeSusp = "suspicious-document00005.txt"
 
 teste = Teste(caminhoSrc)
 teste.teste1N(dirSusp,nomeSusp)
-#teste.teste11(dirSusp,nomeSusp,nomeFonte) --- Descomentar para teste rápido
+#teste.teste11(dirSusp,nomeSusp,nomeFonte)
 print("Log Salvo na pasta")
