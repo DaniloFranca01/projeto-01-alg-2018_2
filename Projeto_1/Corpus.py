@@ -18,6 +18,7 @@ Licenca: The MIT License (MIT)
 import glob
 import ListaDupla as lde
 import Documento as myDoc
+import os
 class Corpus(object):
     '''
     Representacao de um conjunto de documentos
@@ -40,10 +41,10 @@ class Corpus(object):
         Carrega todos os arquivos no deretorio Informado
         '''
         for arquivo in glob.glob(self.__diretorio+'/*txt'):
-            self.lDocumentos.anexar(self.carregarDoc(arquivo))
+            nomeArquivo = os.path.basename(arquivo)
+            self.lDocumentos.anexar(self.carregarDoc(arquivo,nomeArquivo))
 
-
-    def carregarDoc(self,arqv):
+    def carregarDoc(self,arqv,nomeArqv):
         '''
         Carrega um documento no deretorio Informado
         '''
@@ -65,7 +66,7 @@ class Corpus(object):
                     lista.append(palavra)
                     nPalavras +=1
                     palavra = ""
-        documento = myDoc.Documento(lista,nPalavras)
+        documento = myDoc.Documento(lista,nPalavras,nomeArqv)
         return documento
 
     def verificaPlagio(self,documento,limiar):

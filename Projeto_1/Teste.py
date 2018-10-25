@@ -24,7 +24,7 @@ class Teste(object):
             if nomeArquivo in filenames:
                 return self.carregarDoc(dirpath+nomeArquivo)
 
-    def carregarDoc(self, arqv):
+    def carregarDoc(self, arqv, nomeArqv):
         lista = []
         nPalavras = 0
         for linha in open(arqv, 'r',encoding="utf8"):
@@ -40,7 +40,7 @@ class Teste(object):
                     lista.append(palavra)
                     nPalavras += 1
                     palavra = ""
-        documento = myDoc.Documento(lista, nPalavras)
+        documento = myDoc.Documento(lista, nPalavras, nomeArqv)
         return documento
 
     @time_Profile
@@ -49,11 +49,11 @@ class Teste(object):
          Testa um documento suspeito para um fonte cujo nome informado se encontra no diretorio da classe
         '''
         corp = c.Corpus(self.diretorio)
-        docFonte = corp.carregarDoc(self.diretorio+nomeFonte)
+        docFonte = corp.carregarDoc(self.diretorio+nomeFonte,nomeSusp)
         corp.lDocumentos.anexar(docFonte)
-        doc = self.carregarDoc(diretorioSusp+nomeSusp)
+        doc = self.carregarDoc(diretorioSusp+nomeSusp,nomeSusp)
         docsBasePlagio=corp.verificaPlagio(doc, 0.01)
-        return len(docsBasePlagio)
+        return self.salvarLogSaida(docsBasePlagio,nomeSusp)
 
     @time_Profile
     def teste1N(self,diretorioSusp,nomeSusp):
@@ -64,8 +64,19 @@ class Teste(object):
         corp.carregarDiretorio()
         doc = self.buscarArquivo(diretorioSusp,nomeSusp)
         docsBasePlagio=corp.verificaPlagio(doc, 0.01)
-        return len(docsBasePlagio)
+        return self.salvarLogSaida(docsBasePlagio,nomeSusp)
 
+    def salvarLogSaida(self,listaDocs,nomeSusp):
+        '''
+        Salva o log da saida do teste
+        '''
+        saida=open('saida.txt', 'w')
+        saida.write("Documento suspeito: "+nomeSusp+'\n')
+        saida.write("Total de documentos que posivelmente serviram de base: "+str(len(listaDocs))+'\n')
+        saida.write("NOME:CONTENÇÃO"+'\n')
+        for docmt in listaDocs:
+            saida.write(docmt.__nomeDocumento+": "+docmt.contenVal+'\n')
+        saida.close()
 
 caminhoSrc =  "C:\\Users\\danilo.DESKTOP-8QL5HFM\\Downloads\\Projeto 1 ALG\\dados\\src\\"
 nomeFonte = "source-document03229.txt"
@@ -74,5 +85,6 @@ dirSusp= "C:\\Users\\danilo.DESKTOP-8QL5HFM\\Downloads\\Projeto 1 ALG\\dados\\su
 nomeSusp = "suspicious-document00005.txt"
 
 teste = Teste(caminhoSrc)
-#print(teste.teste11(dirSusp,nomeSusp,nomeFonte)) --- Descomentar quando for testar 1 para 1
-print(teste.teste1N(dirSusp,nomeSusp))
+teste.teste1N(dirSusp,nomeSusp)
+#teste.teste11(dirSusp,nomeSusp,nomeFonte) --- Descomentar para teste rápido
+print("Log Salvo na pasta")

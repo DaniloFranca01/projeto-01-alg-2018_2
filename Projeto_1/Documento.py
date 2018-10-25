@@ -22,9 +22,11 @@ class Documento():
     '''
     Representacao de um documento de texto
     '''
-    def __init__(self,listaPalavras,nPalavras):
+    def __init__(self,listaPalavras,nPalavras,nomeDocumento):
         self.__nPalavras = nPalavras
         self.__vPalavras = listaPalavras
+        self.__nomeDocumento = nomeDocumento
+        self.contenVal = 0
         self.nNGrams = 0
         self.lNGrams =  self.gerarNGramas(3,lde.ListaDupla())
 
@@ -44,11 +46,55 @@ class Documento():
     def nPalavras(self, nPalavras):
         self.__nPalavras = nPalavras
 
+    @property
+    def nomeDocumento(self):
+        return self.__nomeDocumento
+
+    @nomeDocumento.setter
+    def nomeDocumento(self, nomeDocumento):
+        self.__nomeDocumento = nomeDocumento
+
     def __str__(self):
         return str(self.__vPalavras)
 
     def __repr__(self):
         return self.__str__()
+
+    def __lt__(self, other):
+        if self.nomeDocumento < other.nomeDocumento:
+            return True
+        else:
+            return False
+
+    def __le__(self, other):
+        if self.nomeDocumento <= other.nomeDocumento:
+            return True
+        else:
+            return False
+
+    def __eq__(self, other):
+        if self.nomeDocumento == other.nomeDocumento:
+            return True
+        else:
+            return False
+
+    def __ne__(self, other):
+        if self.nomeDocumento != other.nomeDocumento:
+            return True
+        else:
+            return False
+
+    def __gt__(self, other):
+        if self.nomeDocumento > other.nomeDocumento:
+            return True
+        else:
+            return False
+
+    def __ge__(self, other):
+        if self.nomeDocumento >= other.nomeDocumento:
+            return True
+        else:
+            return False
 
     def contencao(self,documento):
         '''
@@ -59,8 +105,8 @@ class Documento():
             for y in self.lNGrams:
                 if x == y:
                     intersec += 1
-        c = intersec/documento.nNGrams
-        return c
+        self.contenVal = intersec/documento.nNGrams
+        return self.contenVal
 
     @profile
     def gerarNGramas(self,n,lista):
