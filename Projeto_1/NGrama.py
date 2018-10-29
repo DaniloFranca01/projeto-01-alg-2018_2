@@ -8,38 +8,42 @@ Autor:    Danilo Leite de Franca
 Email:    dlf3@cin.ufpe.br
 Data:        2018-09-28
 
-Descricao:  Classe NGrama herdada de uma Lista duplamente Encadeada.
+Descricao:  Classe NGrama.
 
 
 Licenca: The MIT License (MIT)
             Copyright(c) 2018 Danilo Leite de Franca
 '''
 
-from ListaDupla import ListaDupla
-class NGrama(ListaDupla):
+class NGrama():
     '''
     Representacao de um N-Grama com tamanho variavel
     '''
-    def __init__(self, palavras):
-        self.__palavras = palavras
-        super().__init__(self.__palavras)
+    def __init__(self, docRef,inicio,fim):
+        self.__docRef = docRef
+        self.__inicio = inicio
+        self.__fim = fim
 
     @property
-    def palavras(self):
-        return self.__palavras
+    def docRef(self):
+        return self.__docRef
 
-    @palavras.setter
-    def palavras(self, palavras):
-        self.__palavras = palavras
+    @docRef.setter
+    def docRef(self, docRef):
+        self.__docRef = docRef
 
-    def __eq__(self, ngrama):
-        cont = 0
-        qtdTrue = 0
-        for x in ngrama:
-            if x == self[cont]:
-                qtdTrue+= 1
-            cont+= 1
-        if self.tamanho == qtdTrue:
-            return True
-        else:
-            return False
+    @property
+    def inicio(self):
+        return self.__inicio
+
+    @inicio.setter
+    def inicio(self, inicio):
+        self.__inicio = inicio
+
+    @property
+    def fim(self):
+        return self.__fim
+
+    @fim.setter
+    def fim(self, fim):
+        self.__fim = fim

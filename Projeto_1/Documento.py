@@ -96,6 +96,9 @@ class Documento():
         else:
             return False
 
+    '''
+    Manutenção em andamento
+    '''
     def contencao(self,documento):
         '''
         Recebe como parametro um documento e retorna a contencao do documento informado para cada documento em um diretorio
@@ -111,18 +114,14 @@ class Documento():
     @profile
     def gerarNGramas(self,n,lista):
         '''
-        Recebe como parametro uma lista e um valor N e retorna um N-grama com o tamanho informado
+        Recebe como parametro uma lista e um valor N e retorna uma lista de N-gramas com o tamanho informado
         '''
-        for i in range(0,self.nPalavras):
-            if (i+n) > self.nPalavras:
-                return lista
-            palavras = ""
-            for j in range(i,i+n):
-                palavras+= self.__vPalavras[j]+","
-            palavras = palavras.strip(",")
-            palavras = palavras.split(",")
-            nGram = ng.NGrama(palavras)
+        self.nNGrams = (self.nPalavras-n) +1
+        for i in range(0,self.nNGrams):
+            inicio = i
+            fim = (i + n)-1
+            ref = self
+            nGram = ng.NGrama(ref,inicio,fim)
             lista.anexar(nGram)
-            self.nNGrams+=1
             del(nGram)
         return lista
