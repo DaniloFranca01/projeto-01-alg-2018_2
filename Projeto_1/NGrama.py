@@ -47,18 +47,11 @@ class NGrama():
     @fim.setter
     def fim(self, fim):
         self.__fim = fim
-    
+
     def __rpr__(self):
-        return "NGRAMA: "+__str__()
-        
+        return "NGrama({0}, {1}, {2})".format(self.__docRef.__repr__(), self.__inicio, self.__fim)
+
     def __str__(self):
-        ngrama = ""
-        for i in range(self.__inicio, self.__fim):
-            if i == self.__fim:
-                ngrama+= self.__docRef[i]
-            else:
-                ngrama+= self.__docRef[i]+" "
-        return ngrama
-        
-        
-        
+        return " ".join(self.__docRef.vPalavras[n] for n in range (self.__inicio, self.__fim+1))
+
+
