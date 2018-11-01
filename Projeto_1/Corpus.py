@@ -88,6 +88,3 @@ class Corpus(object):
             if contencao > limiar:
                 lDocBases.inserirOrdenado(x)
         return lDocBases
-
-
-asdasd
