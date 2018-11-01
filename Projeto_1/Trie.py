@@ -87,6 +87,4 @@ class Trie(object):
         if atual.documentos is None:
             raise KeyError
         else:
-            return atual.documentos
-
-
+            return atual.documento
