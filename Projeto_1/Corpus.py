@@ -19,6 +19,7 @@ import glob
 import ListaDupla as lde
 import Documento as myDoc
 import os
+from Trie import Trie
 class Corpus(object):
     '''
     Representacao de um conjunto de documentos
@@ -26,6 +27,7 @@ class Corpus(object):
     def __init__(self, diretorio):
         self.__diretorio=diretorio
         self.lDocumentos = lde.ListaDupla()
+        self.trieDocs = Trie()
 
     @property
     def diretorio(self):
@@ -42,7 +44,7 @@ class Corpus(object):
         '''
         for arquivo in glob.glob(self.__diretorio+'/*txt'):
             nomeArquivo = os.path.basename(arquivo)
-            self.lDocumentos.anexar(self.carregarDoc(arquivo,nomeArquivo))
+            self.gerarTrie(self.carregarDoc(arquivo,nomeArquivo))
 
     def carregarDoc(self,arqv,nomeArqv):
         '''
@@ -68,6 +70,11 @@ class Corpus(object):
                     palavra = ""
         documento = myDoc.Documento(lista,nPalavras,nomeArqv)
         return documento
+
+    def gerarTrie(self,doc):
+        for ngrama in doc.lNGrams:
+            self.trieDocs.inserir(ngrama)
+
 
     def verificaPlagio(self,documento,limiar):
         '''
