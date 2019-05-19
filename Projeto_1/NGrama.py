@@ -53,3 +53,5 @@ class NGrama():
 
     def __str__(self):
         return " ".join(self.__docRef.vPalavras[n] for n in range (self.__inicio, self.__fim+1))
+
+
